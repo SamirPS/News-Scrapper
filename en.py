@@ -13,3 +13,8 @@ def FoxNewsSC():
   del arfoxnews[0]
   del arfoxnews[0]
   return arfoxnews
+
+def ABCNewsSC():
+  ABCNews=requests.get("https://abcnews.go.com/abcnews/moneyheadlines")
+  arabcnews=re.findall(r'<link><!\[CDATA\[(.*?)]]>',ABCNews.text)
+  return arabcnews
