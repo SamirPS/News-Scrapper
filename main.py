@@ -26,6 +26,12 @@ arlibe=re.findall(r'<link href="(.*?)"',Liberation.text)
 del arlibe[0]
 print(arlibe)
 
+Francetvinfo=requests.get("https://www.francetvinfo.fr/titres.rss")
+arfti=re.findall(r'<link>(.*?)#',Francetvinfo.text)
+del arfti[0]
+print(arfti)
+
+
 
 
 
