@@ -1,2 +1,2 @@
 # NewsFR-Scrapper
-Web Scrapper for french news website
+Web Scrapper for  news website
