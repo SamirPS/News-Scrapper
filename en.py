@@ -18,3 +18,10 @@ def ABCNewsSC():
   ABCNews=requests.get("https://abcnews.go.com/abcnews/moneyheadlines")
   arabcnews=re.findall(r'<link><!\[CDATA\[(.*?)]]>',ABCNews.text)
   return arabcnews
+
+def TheGuardianSC():
+  TheGuardianSC=requests.get("https://www.theguardian.com/us-news/rss")
+  arguardian=re.findall(r'<link>(.*?)</link>',TheGuardianSC.text)
+  del arguardian[0]
+  del arguardian[0]
+  return arguardian
