@@ -21,6 +21,11 @@ arbfmtv=re.findall(r'<link>(.*?)</link>',Bfmtv.text)
 del arbfmtv[0]
 print(arbfmtv)
 
+Liberation=requests.get("http://rss.liberation.fr/rss/latest/")
+arlibe=re.findall(r'<link href="(.*?)"',Liberation.text)
+del arlibe[0]
+print(arlibe)
+
 
 
 
