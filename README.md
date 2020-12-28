@@ -15,6 +15,6 @@ Web Scrapper for  news website get the headlines
 
 * CNN :  CNNSC()
 * FoxNews: FoxNewsSC()
-* AbcNews: ABCNewsSC()()
-* TheGuardian : TheGuardianSC()()
+* AbcNews: ABCNewsSC()
+* TheGuardian : TheGuardianSC()
 
