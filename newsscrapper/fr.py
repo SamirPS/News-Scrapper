@@ -15,12 +15,23 @@ def MondeSC():
 
   return data
 
-print(MondeSC())
 
 def ParisSC():
   Paris=requests.get("https://www.leparisien.fr/arcio/sitemap/master/")
-  arparis=re.findall(r'<loc>(.*?)</loc>',Paris.text)
-  return arparis
+  
+  s=Paris.text
+  s=s.replace("\n","")
+  arparis=re.findall(r'<url>(.*?)</url>',s)
+  data={}
+  for i in range(len(arparis)):
+    picture=re.findall(r'<image:loc>(.*?)</image:loc>',arparis[i])
+    link=re.findall(r'<loc>(.*?)</loc>',arparis[i])
+    try:
+      data[str(i)]={"link":link[0],"img":picture[0]}
+    except:
+      data[str(i)]={"link":link[0],"img":""}
+  return data
+
 
 def MediaPartSC():
   MediaPart=requests.get("https://www.mediapart.fr/articles/feed")
@@ -42,9 +53,20 @@ def LibeSC():
 
 def FTISC():
   Francetvinfo=requests.get("https://www.francetvinfo.fr/titres.rss")
-  arfti=re.findall(r'<link>(.*?)#',Francetvinfo.text)
-  del arfti[0]
-  return arfti
+  s=Francetvinfo.text
+  s=s.replace("\n","")
+  arfti=re.findall('<item>(.*?)</item>',s)
+  data={}
+  for i in range(len(arfti)):
+    picture=re.findall(r'url="(.*?)"',arfti[i])
+    link=re.findall(r'<link>(.*?)</link>',arfti[i])
+    try:
+      data[str(i)]={"link":link[0],"img":picture[0]}
+    except:
+      data[str(i)]={"link":link[0],"img":""}
+
+  return data
+
 
 
 
