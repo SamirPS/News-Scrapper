@@ -3,9 +3,19 @@ import re
 
 def MondeSC():
   Monde=requests.get("https://www.lemonde.fr/rss/une.xml")
-  armonde=re.findall(r'<link>(.*?)</link>',Monde.text)
-  del armonde[0]
-  return armonde
+  armonde=re.findall(r'<item>(.*?)</item>',Monde.text)
+  data={}
+  for i in range(len(armonde)):
+    picture=re.findall(r'<media:content url="(.*?)"',armonde[i])
+    link=re.findall(r'<link>(.*?)</link>',armonde[i])
+    try:
+      data[str(i)]={"link":link[0],"img":picture[0]}
+    except:
+      data[str(i)]={"link":link[0],"img":""}
+
+  return data
+
+print(MondeSC())
 
 def ParisSC():
   Paris=requests.get("https://www.leparisien.fr/arcio/sitemap/master/")
@@ -35,7 +45,6 @@ def FTISC():
   arfti=re.findall(r'<link>(.*?)#',Francetvinfo.text)
   del arfti[0]
   return arfti
-
 
 
 

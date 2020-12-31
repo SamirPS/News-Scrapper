@@ -2,3 +2,5 @@ venv
 build
 dist
 newsscrapper_SamirPS.egg-info
+Pipfile
+Pipfile.lock
