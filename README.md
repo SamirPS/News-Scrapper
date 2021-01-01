@@ -1,5 +1,5 @@
 # News-Scrapper
-Web Scrapper for  news website get the headlines : https://pypi.org/project/newsscrapper-SamirPS/0.0.1/
+Web Scrapper for  news website get the headlines : https://pypi.org/project/newsscrapper-SamirPS/
 
 To import the function :
 ## FR:
