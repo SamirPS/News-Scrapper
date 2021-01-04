@@ -1,6 +1,8 @@
 # News-Scrapper
 Web Scrapper for  news website get the headlines : https://pypi.org/project/newsscrapper-SamirPS/
 
+TODO: Get the title of the article
+      Get the description of the article
 To import the function :
 ## FR:
 ```python
