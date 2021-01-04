@@ -8,13 +8,13 @@ def MondeSC():
   for i in range(len(armonde)):
     picture=re.findall(r'<media:content url="(.*?)"',armonde[i])
     link=re.findall(r'<link>(.*?)</link>',armonde[i])
+    title=re.findall(r'<title><!\[CDATA\[(.*?)]]>',armonde[i])
     try:
-      data[str(i)]={"link":link[0],"img":picture[0]}
+      data[str(i)]={"link":link[0],"img":picture[0],"title":title[0].replace(u"\xa0"," ")}
     except:
-      data[str(i)]={"link":link[0],"img":""}
+      data[str(i)]={"link":link[0],"img":"","title":title[0].replace(u"\xa0"," ")}
 
   return data
-
 
 def ParisSC():
   Paris=requests.get("https://www.leparisien.fr/arcio/sitemap/master/")
@@ -26,10 +26,12 @@ def ParisSC():
   for i in range(len(arparis)):
     picture=re.findall(r'<image:loc>(.*?)</image:loc>',arparis[i])
     link=re.findall(r'<loc>(.*?)</loc>',arparis[i])
+    title=link[0].split("/")
+    title[-1]=title[-1].replace(".php","").replace("-"," ")
     try:
-      data[str(i)]={"link":link[0],"img":picture[0]}
+      data[str(i)]={"link":link[0],"img":picture[0],"title":title[-1].replace(u"\xa0"," ")}
     except:
-      data[str(i)]={"link":link[0],"img":""}
+      data[str(i)]={"link":link[0],"img":"","title":title[-1].replace(u"\xa0"," ")}
   return data
 
 
@@ -42,10 +44,12 @@ def MediaPartSC():
   for i in range(len(armediapart)):
     picture=re.findall(r'<media:content url="(.*?)"',armediapart[i])
     link=re.findall(r'<link>(.*?)</link>',armediapart[i])
+    title=re.findall(r'<title><!\[CDATA\[(.*?)]]>',armediapart[i])
+
     try:
-      data[str(i)]={"link":link[0],"img":picture[0]}
+      data[str(i)]={"link":link[0],"img":picture[0],"title":title[0].replace(u"\xa0"," ")}
     except:
-      data[str(i)]={"link":link[0],"img":""}
+      data[str(i)]={"link":link[0],"img":"","title":title[0].replace(u"\xa0"," ")}
   return data
   
 
@@ -59,12 +63,14 @@ def BmftvSC():
   for i in range(len(arbfmtv)):
     picture=re.findall(r'<enclosure url="(.*?)"',arbfmtv[i])
     link=re.findall(r'<link>(.*?)</link>',arbfmtv[i])
+    title=re.findall(r'<title><!\[CDATA\[(.*?)]]>',arbfmtv[i])
+
     try:
-      data[str(i)]={"link":link[0],"img":picture[0]}
+      data[str(i)]={"link":link[0],"img":picture[0],"title":title[0].replace(u"\xa0"," ")}
     except:
-      data[str(i)]={"link":link[0],"img":""}
+      data[str(i)]={"link":link[0],"img":"","title":title[0].replace(u"\xa0"," ")}
   return data
-  
+
 
 def LibeSC():
   Liberation=requests.get("http://rss.liberation.fr/rss/latest/")
@@ -75,11 +81,15 @@ def LibeSC():
   for i in range(len(arlibe)):
     picture=re.findall(r'https://medias.liberation.fr/photo/(.*?);ratio',arlibe[i])
     link=re.findall(r'<link href="(.*?)"',arlibe[i])
+    title=re.findall(r'<title>(.*?)</title>',arlibe[i])
+
     try:
-      data[str(i)]={"link":link[0],"img":"https://medias.liberation.fr/photo/"+picture[0]}
+      data[str(i)]={"link":link[0],"img":picture[0],"title":title[0].replace(u"\xa0"," ")}
     except:
-      data[str(i)]={"link":link[0],"img":""}
+      data[str(i)]={"link":link[0],"img":"","title":title[0].replace(u"\xa0"," ")}
   return data
+
+
 
 def FTISC():
   Francetvinfo=requests.get("https://www.francetvinfo.fr/titres.rss")
@@ -90,12 +100,14 @@ def FTISC():
   for i in range(len(arfti)):
     picture=re.findall(r'url="(.*?)"',arfti[i])
     link=re.findall(r'<link>(.*?)</link>',arfti[i])
-    try:
-      data[str(i)]={"link":link[0],"img":picture[0]}
-    except:
-      data[str(i)]={"link":link[0],"img":""}
+    title=re.findall(r'<title>(.*?)</title>',arfti[i])
 
+    try:
+      data[str(i)]={"link":link[0],"img":picture[0],"title":title[0].replace(u"\xa0"," ")}
+    except:
+      data[str(i)]={"link":link[0],"img":"","title":title[0].replace(u"\xa0"," ")}
   return data
+
 
 
 

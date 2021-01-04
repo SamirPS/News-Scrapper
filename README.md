@@ -1,5 +1,5 @@
 # News-Scrapper
-Web Scrapper for  news website get the headlines : https://pypi.org/project/newsscrapper-SamirPS/0.0.1/
+Web Scrapper for  news website get the headlines : https://pypi.org/project/newsscrapper-SamirPS/
 
 To import the function :
 ## FR:
@@ -23,4 +23,4 @@ from newsscrapper import en
 * AbcNews: en.ABCNewsSC()
 * TheGuardian : en.TheGuardianSC()
 
-The function return  a dict like {"1":{"link":X,"img":Y}}
+The function return  a dict like {"1":{"link":X,"img":Y,"title":Z}}

@@ -6,15 +6,16 @@ def CNNSC():
   arcnn=re.findall(r'<item>(.*?)</item>',CNN.text)
   data={}
   for i in range(len(arcnn)):
+    
     picture=re.findall(r'<media:content medium="image" url="(.*?)"',arcnn[i])
     link=re.findall(r'<link>(.*?)</link>',arcnn[i])
+    title=re.findall(r'<title><!\[CDATA\[(.*?)]]>',arcnn[i])
     try:
-      data[str(i)]={"link":link[0],"img":picture[0]}
+      data[str(i)]={"link":link[0],"img":picture[0],"title":title[0].replace(u"\xa0"," ")}
     except:
-      data[str(i)]={"link":link[0],"img":""}
+      data[str(i)]={"link":link[0],"img":"","title":title[0].replace(u"\xa0"," ")}
 
   return data
-
 
 
 def FoxNewsSC():
@@ -26,12 +27,14 @@ def FoxNewsSC():
   for i in range(len(arfoxnews)):
     picture=re.findall(r'<media:content url="(.*?)"',arfoxnews[i])
     link=re.findall(r'<link>(.*?)</link>',arfoxnews[i])
+    title=re.findall(r'<title>(.*?)</title>',arfoxnews[i])
     try:
-      data[str(i)]={"link":link[0],"img":picture[0]}
+      data[str(i)]={"link":link[0],"img":picture[0],"title":title[0].replace(u"\xa0"," ")}
     except:
-      data[str(i)]={"link":link[0],"img":""}
+      data[str(i)]={"link":link[0],"img":"","title":title[0].replace(u"\xa0"," ")}
 
   return data
+
 
 
 def ABCNewsSC():
@@ -43,12 +46,14 @@ def ABCNewsSC():
   for i in range(len(arabcnews)):
     picture=re.findall(r'<media:thumbnail url="(.*?)"',arabcnews[i])
     link=re.findall(r'<link><!\[CDATA\[(.*?)]]>',arabcnews[i])
+    title=re.findall(r'<title><!\[CDATA\[(.*?)]]',arabcnews[i])
     try:
-      data[str(i)]={"link":link[0],"img":picture[0]}
+      data[str(i)]={"link":link[0],"img":picture[0],"title":title[0].replace(u"\xa0"," ")}
     except:
-      data[str(i)]={"link":link[0],"img":""}
+      data[str(i)]={"link":link[0],"img":"","title":title[0].replace(u"\xa0"," ")}
 
   return data
+
 
 
 
@@ -61,10 +66,12 @@ def TheGuardianSC():
   for i in range(len(arguardian)):
     picture=re.findall(r'url="https://i.guim.co.uk/img/media/(.*?)"',arguardian[i])
     link=re.findall(r'<link>(.*?)</link>',arguardian[i])
+    title=re.findall(r'<title>(.*?)</title>',arguardian[i])
     try:
-      data[str(i)]={"link":link[0],"img":"https://i.guim.co.uk/img/media/"+picture[0].replace("amp;","")}
+      data[str(i)]={"link":link[0],"img":picture[0],"title":title[0].replace(u"\xa0"," ")}
     except:
-      data[str(i)]={"link":link[0],"img":""}
+      data[str(i)]={"link":link[0],"img":"","title":title[0].replace(u"\xa0"," ")}
 
   return data
+
 
