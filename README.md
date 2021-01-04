@@ -25,4 +25,4 @@ from newsscrapper import en
 * AbcNews: en.ABCNewsSC()
 * TheGuardian : en.TheGuardianSC()
 
-The function return  a dict like {"1":{"link":X,"img":Y}}
+The function return  a dict like {"1":{"link":X,"img":Y,"title":Z}}
