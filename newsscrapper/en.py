@@ -67,8 +67,9 @@ def TheGuardianSC():
     picture=re.findall(r'url="https://i.guim.co.uk/img/media/(.*?)"',arguardian[i])
     link=re.findall(r'<link>(.*?)</link>',arguardian[i])
     title=re.findall(r'<title>(.*?)</title>',arguardian[i])
+    addj="https://i.guim.co.uk/img/media/"
     try:
-      data[str(i)]={"link":link[0],"img":picture[0],"title":title[0].replace(u"\xa0"," ")}
+      data[str(i)]={"link":link[0],"img":addj+picture[0],"title":title[0].replace(u"\xa0"," ")}
     except:
       data[str(i)]={"link":link[0],"img":"","title":title[0].replace(u"\xa0"," ")}
 
