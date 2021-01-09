@@ -23,4 +23,12 @@ from newsscrapper import en
 * AbcNews: en.ABCNewsSC()
 * TheGuardian : en.TheGuardianSC()
 
+
+## ES:
+```python
+from newsscrapper import es
+```
+* EFE :  es.EFESC()
+* ELPAIS: es.ELPAISSC()
+
 The function return  a dict like {"1":{"link":X,"img":Y,"title":Z}}
