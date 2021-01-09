@@ -64,15 +64,16 @@ def TheGuardianSC():
   arguardian=re.findall(r'<item>(.*?)</item>',s)
   data={}
   for i in range(len(arguardian)):
-    picture=re.findall(r'url="https://i.guim.co.uk/img/media/(.*?)"',arguardian[i])
+    picture=re.findall(r'<media:content width="140" url="(.*?)"',arguardian[i])
     link=re.findall(r'<link>(.*?)</link>',arguardian[i])
+    
     title=re.findall(r'<title>(.*?)</title>',arguardian[i])
-    addj="https://i.guim.co.uk/img/media/"
+    print(picture)
     try:
-      data[str(i)]={"link":link[0],"img":addj+picture[0],"title":title[0].replace(u"\xa0"," ")}
+      picture[0]=picture[0].replace("amp;","")
+      data[str(i)]={"link":link[0],"img":picture[0],"title":title[0].replace(u"\xa0"," ")}
     except:
       data[str(i)]={"link":link[0],"img":"","title":title[0].replace(u"\xa0"," ")}
 
   return data
-
 
