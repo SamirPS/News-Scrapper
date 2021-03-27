@@ -73,16 +73,17 @@ def BmftvSC():
 
 
 def LibeSC():
-  Liberation=requests.get("http://rss.liberation.fr/rss/latest/")
+  Liberation=requests.get("https://www.liberation.fr/arc/outboundfeeds/rss/?outputType=xml")
   s=Liberation.text
   s=s.replace("\n","")
-  arlibe=re.findall(r'<entry>(.*?)</entry>',s)
+  arlibe=re.findall(r'<item>(.*?)</item>',s)
   data={}
   for i in range(len(arlibe)):
-    picture=re.findall(r'https://medias.liberation.fr/photo/(.*?);ratio',arlibe[i])
-    link=re.findall(r'<link href="(.*?)"',arlibe[i])
+    picture=re.findall(r'https://liberation-liberation-prod.cdn.arcpublishing.com/resizer/(.*?)">',arlibe[i])
+    link=re.findall(r'<link>(.*?)</link>',arlibe[i])
     title=re.findall(r'<title>(.*?)</title>',arlibe[i])
-    addj="https://medias.liberation.fr/photo/"
+    title[0]=title[0].replace("<![CDATA[","").replace("]]>","")
+    addj="https://liberation-liberation-prod.cdn.arcpublishing.com/resizer/"
     try:
       data[str(i)]={"link":link[0],"img":addj+picture[0],"title":title[0].replace(u"\xa0"," ")}
     except:
@@ -107,7 +108,6 @@ def FTISC():
     except:
       data[str(i)]={"link":link[0],"img":"","title":title[0].replace(u"\xa0"," ")}
   return data
-
 
 
 
