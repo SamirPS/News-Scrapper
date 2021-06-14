@@ -27,13 +27,13 @@ def ParisSC():
     picture=re.findall(r'<image:loc>(.*?)</image:loc>',arparis[i])
     link=re.findall(r'<loc>(.*?)</loc>',arparis[i])
     title=link[0].split("/")
-    title[-1]=title[-1].replace(".php","")
     titre=title[-1].split("-")
-    titre=" ".join(titre[0:len(titre)-4]) 
+    fini=" ".join(titre[0:len(titre)-4]) 
+    print(fini)
     try:
-      data[str(i)]={"link":link[0],"img":picture[0],"title":titre.replace(u"\xa0"," ")}
+      data[str(i)]={"link":link[0],"img":picture[0],"title":fini}
     except:
-      data[str(i)]={"link":link[0],"img":"","title":titre.replace(u"\xa0"," ")}
+      data[str(i)]={"link":link[0],"img":"","title":fini}
   return data
 
 
