@@ -29,7 +29,6 @@ def ParisSC():
     title=link[0].split("/")
     titre=title[-1].split("-")
     fini=" ".join(titre[0:len(titre)-4]) 
-    print(fini)
     try:
       data[str(i)]={"link":link[0],"img":picture[0],"title":fini}
     except:
