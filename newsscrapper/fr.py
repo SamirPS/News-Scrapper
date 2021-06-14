@@ -29,7 +29,7 @@ def ParisSC():
     title=link[0].split("/")
     title[-1]=title[-1].replace(".php","")
     titre=title[-1].split("-")
-    title=" ".join(titre[0:len(titre)-4]) 
+    titre=" ".join(titre[0:len(titre)-4]) 
     try:
       data[str(i)]={"link":link[0],"img":picture[0],"title":titre.replace(u"\xa0"," ")}
     except:
