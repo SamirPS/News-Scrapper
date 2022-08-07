@@ -27,11 +27,12 @@ def ParisSC():
     picture=re.findall(r'<image:loc>(.*?)</image:loc>',arparis[i])
     link=re.findall(r'<loc>(.*?)</loc>',arparis[i])
     title=link[0].split("/")
-    title[-1]=title[-1].replace(".php","").replace("-"," ")
+    titre=title[-1].split("-")
+    fini=" ".join(titre[0:len(titre)-4]) 
     try:
-      data[str(i)]={"link":link[0],"img":picture[0],"title":title[-1].replace(u"\xa0"," ")}
+      data[str(i)]={"link":link[0],"img":picture[0],"title":fini}
     except:
-      data[str(i)]={"link":link[0],"img":"","title":title[-1].replace(u"\xa0"," ")}
+      data[str(i)]={"link":link[0],"img":"","title":fini}
   return data
 
 
@@ -73,16 +74,17 @@ def BmftvSC():
 
 
 def LibeSC():
-  Liberation=requests.get("http://rss.liberation.fr/rss/latest/")
+  Liberation=requests.get("https://www.liberation.fr/arc/outboundfeeds/rss/?outputType=xml")
   s=Liberation.text
   s=s.replace("\n","")
-  arlibe=re.findall(r'<entry>(.*?)</entry>',s)
+  arlibe=re.findall(r'<item>(.*?)</item>',s)
   data={}
   for i in range(len(arlibe)):
-    picture=re.findall(r'https://medias.liberation.fr/photo/(.*?);ratio',arlibe[i])
-    link=re.findall(r'<link href="(.*?)"',arlibe[i])
+    picture=re.findall(r'https://liberation-liberation-prod.cdn.arcpublishing.com/resizer/(.*?)">',arlibe[i])
+    link=re.findall(r'<link>(.*?)</link>',arlibe[i])
     title=re.findall(r'<title>(.*?)</title>',arlibe[i])
-    addj="https://medias.liberation.fr/photo/"
+    title[0]=title[0].replace("<![CDATA[","").replace("]]>","")
+    addj="https://liberation-liberation-prod.cdn.arcpublishing.com/resizer/"
     try:
       data[str(i)]={"link":link[0],"img":addj+picture[0],"title":title[0].replace(u"\xa0"," ")}
     except:
@@ -107,7 +109,6 @@ def FTISC():
     except:
       data[str(i)]={"link":link[0],"img":"","title":title[0].replace(u"\xa0"," ")}
   return data
-
 
 
 
