@@ -24,6 +24,7 @@ from newsscrapper import en
 * FoxNews: en.FoxNewsSC()
 * AbcNews: en.ABCNewsSC()
 * TheGuardian : en.TheGuardianSC()
+* TheNewYorkTimes : en.TheNewYorkTimesSC()
 
 
 ## ES:
