@@ -26,7 +26,7 @@ def FoxNewsSC():
   data={}
   for i in range(len(arfoxnews)):
     picture=re.findall(r'<media:content url="(.*?)"',arfoxnews[i])
-    link=re.findall(r'<link>(.*?)</link>',arfoxnews[i])
+    link=re.findall(r'<guid isPermaLink="true">(.*?)</guid>',arfoxnews[i])
     title=re.findall(r'<title>(.*?)</title>',arfoxnews[i])
     try:
       data[str(i)]={"link":link[0],"img":picture[0],"title":title[0].replace(u"\xa0"," ")}
@@ -34,8 +34,6 @@ def FoxNewsSC():
       data[str(i)]={"link":link[0],"img":"","title":title[0].replace(u"\xa0"," ")}
 
   return data
-
-
 
 def ABCNewsSC():
   ABCNews=requests.get("https://abcnews.go.com/abcnews/moneyheadlines")
@@ -56,7 +54,6 @@ def ABCNewsSC():
 
 
 
-
 def TheGuardianSC():
   TheGuardianSC=requests.get("https://www.theguardian.com/us-news/rss")
   s=TheGuardianSC.text
@@ -68,9 +65,25 @@ def TheGuardianSC():
     link=re.findall(r'<link>(.*?)</link>',arguardian[i])
     
     title=re.findall(r'<title>(.*?)</title>',arguardian[i])
-    print(picture)
     try:
       picture[0]=picture[0].replace("amp;","")
+      data[str(i)]={"link":link[0],"img":picture[0],"title":title[0].replace(u"\xa0"," ")}
+    except:
+      data[str(i)]={"link":link[0],"img":"","title":title[0].replace(u"\xa0"," ")}
+
+  return data
+
+def TheNewYorkTimesSC():
+  TheNewYorkTimesSC=requests.get("https://www.nytimes.com/services/xml/rss/nyt/HomePage.xml")
+  s=TheNewYorkTimesSC.text
+  s=s.replace("\n","")
+  arnytimes=re.findall(r'<item>(.*?)</item>',s)
+  data={}
+  for i in range(len(arnytimes)):
+    picture=re.findall(r'<media:content url="(.*?)"',arnytimes[i])
+    link=re.findall(r'<link>(.*?)</link>',arnytimes[i])
+    title=re.findall(r'<title>(.*?)</title>',arnytimes[i])
+    try:
       data[str(i)]={"link":link[0],"img":picture[0],"title":title[0].replace(u"\xa0"," ")}
     except:
       data[str(i)]={"link":link[0],"img":"","title":title[0].replace(u"\xa0"," ")}
