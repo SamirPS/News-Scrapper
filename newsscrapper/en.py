@@ -79,8 +79,9 @@ def TheNewYorkTimesSC():
   s=s.replace("\n","")
   arnytimes=re.findall(r'<item>(.*?)</item>',s)
   data={}
+  
   for i in range(len(arnytimes)):
-    picture=re.findall(r'<media:content url="(.*?)"',arnytimes[i])
+    picture=re.findall(r'medium="image" url="(.*?)" width',arnytimes[i])
     link=re.findall(r'<link>(.*?)</link>',arnytimes[i])
     title=re.findall(r'<title>(.*?)</title>',arnytimes[i])
     try:
