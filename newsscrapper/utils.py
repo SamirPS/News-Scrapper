@@ -3,15 +3,15 @@ import requests
 
 
 def return_information(
-    url,
-    tag_article,
-    tag_title,
-    tag_link,
-    tag_description,
-    tag_image,
-    tag_image_h,
-    tag_image_w,
-    tag_image_link,
+    url: str,
+    tag_article: str,
+    tag_title: str,
+    tag_link: str,
+    tag_description: str,
+    tag_image: str,
+    tag_image_h: str,
+    tag_image_w: str,
+    tag_image_link: str,
 ):
     website = requests.get(url)
     data = {}
@@ -46,7 +46,7 @@ def return_information(
                     key = f"{h}x{w}"
                 link_image = image.get(tag_image_link)
                 images[key] = link_image
-            except:
+            except Exception:
                 pass
 
         data[f"{count}"] = {
