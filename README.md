@@ -1,19 +1,15 @@
 # News-Scrapper
-Web Scrapper for  news website get the headlines : https://pypi.org/project/newsscrapper-SamirPS/
-POC : https://newswebs.herokuapp.com/
-TODO: Get the title of the article
-      Get the description of the article
+Web Scrapper for gettings the headlines of some news websites: https://pypi.org/project/newsscrapper-SamirPS/
+
 To import the function :
 ## FR:
 ```python
 from newsscrapper import fr
 ```
 * LeMonde : fr.MondeSC()
-* LeParisien: fr.ParisSC()
 * MediaPart: fr.MediaPartSC()
 * BFMTV : fr.BmftvSC()
 * Libération : fr.LibeSC()
-* FranceTv INFO : fr.LibeSC()
 
 
 ## EN:
@@ -31,7 +27,8 @@ from newsscrapper import en
 ```python
 from newsscrapper import es
 ```
-* EFE :  es.EFESC()
 * ELPAIS: es.ELPAISSC()
 
-The function return  a dict like {"1":{"link":X,"img":Y,"title":Z}}
+The function return a dict like {"1":{"link":A,"images":{key_image:B,...},"title":C,"description":D}}
+
+The ... is for multiple images; key_image can be the "heightxweight" of the picture or a string representing an integer if we don't have the height or weight.
