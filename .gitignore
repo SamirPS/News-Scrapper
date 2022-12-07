@@ -4,3 +4,4 @@ dist
 newsscrapper_SamirPS.egg-info
 Pipfile
 Pipfile.lock
+newsscrapper/__pycache__/
