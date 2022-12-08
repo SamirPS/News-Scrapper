@@ -23,13 +23,15 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="newsscrapper-SamirPS",  # Replace with your own username
-    version="1.0.2",
+    version="1.0.3",
     author="SamirPS",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/SamirPS/News-Scrapper",
     install_requires=["requests", "bs4", "lxml","newspaper3k"],
-    packages=find_packages(),
+    packages=["newsscrapper"],
+    include_package_data=True,
+    license='MIT',
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
