@@ -1,11 +1,11 @@
-from setuptools import setup,find_packages
+from setuptools import setup
 from setuptools.command.install import install as _install
 
-import nltk
 
-class DownloadNLTK(install):
+class DownloadNLTK(_install):
     def run(self):
         self.do_egg_install()
+        import nltk
         required_nltk = [
             'brown',  # Required for FastNPExtractor
             'punkt',  # Required for WordTokenizer
@@ -23,20 +23,22 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="newsscrapper-SamirPS",  # Replace with your own username
-    version="1.0.2",
+    version="1.0.4",
     author="SamirPS",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/SamirPS/News-Scrapper",
     install_requires=["requests", "bs4", "lxml","newspaper3k"],
-    packages=find_packages(),
+    packages=["newsscrapper"],
+    include_package_data=True,
+    license='MIT',
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
     python_requires=">=3.6",
-    cmdclass={'download_nltk': DownloadNLTK()},
+    cmdclass={'download_nltk': DownloadNLTK},
 )
 
 

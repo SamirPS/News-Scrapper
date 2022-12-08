@@ -1,4 +1,4 @@
-from utils import return_information
+from .utils import return_information
 
 
 def CNNSC():
