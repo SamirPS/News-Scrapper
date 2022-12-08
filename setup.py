@@ -1,11 +1,11 @@
 from setuptools import setup,find_packages
 from setuptools.command.install import install as _install
 
-import nltk
 
 class DownloadNLTK(install):
     def run(self):
         self.do_egg_install()
+        import nltk
         required_nltk = [
             'brown',  # Required for FastNPExtractor
             'punkt',  # Required for WordTokenizer
