@@ -1,6 +1,18 @@
 from bs4 import BeautifulSoup
 import requests
+from newspaper import Article
 
+def get_summary_of_article(
+    url:str,
+):  
+    try:
+        article = Article(url)
+        article.download()
+        article.parse()
+        article.nlp()
+        return article.summary
+    except Exception:
+        return None
 
 def return_information(
     url: str,
@@ -54,6 +66,7 @@ def return_information(
             "images": images,
             "title": title,
             "description": description,
+            "summary":get_summary_of_article(link)
         }
 
     return data
