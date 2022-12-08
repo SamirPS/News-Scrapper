@@ -36,7 +36,7 @@ setup(
         "Operating System :: OS Independent",
     ],
     python_requires=">=3.6",
-    cmdclass={'download_nltk': DownloadNLTK()},
+    cmdclass={'download_nltk': DownloadNLTK},
 )
 
 
