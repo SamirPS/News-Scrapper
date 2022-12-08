@@ -2,7 +2,7 @@ from setuptools import setup,find_packages
 from setuptools.command.install import install as _install
 
 
-class DownloadNLTK(install):
+class DownloadNLTK(_install):
     def run(self):
         self.do_egg_install()
         import nltk
