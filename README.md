@@ -33,6 +33,6 @@ from newsscrapper import es
 ```
 * ELPAIS: es.ELPAISSC()
 
-The function return a dict like {"1":{"link":A,"images":{key_image:B,...},"title":C,"description":D,"summary":E}}
+The function return a dict like {"1":{"link":A,"images":{key_image:B,...},"title":C,"description":D,"summary":E,"keyword":F}}
 
 The ... is for multiple images; key_image can be the "heightxweight" of the picture or a string representing an integer if we don't have the height or weight.
