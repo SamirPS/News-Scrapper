@@ -12,7 +12,19 @@ def get_summary_of_article(
         article.nlp()
         return article.summary
     except Exception:
-        return None
+        return ""
+
+def get_keyword_of_article(
+    url:str,
+):  
+    try:
+        article = Article(url)
+        article.download()
+        article.parse()
+        article.nlp()
+        return article.keywords
+    except Exception:
+        return []
 
 def return_information(
     url: str,
@@ -66,7 +78,8 @@ def return_information(
             "images": images,
             "title": title,
             "description": description,
-            "summary":get_summary_of_article(link)
+            "summary":get_summary_of_article(link),
+            "keyword":get_keyword_of_article(link)
         }
 
     return data
